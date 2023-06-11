@@ -2,6 +2,8 @@ package main.models;
 
 import main.exceptions.ElementNotFound;
 
+import java.util.Iterator;
+
 public class LinkedList<A> implements IList<A> {
     private Node<A> head;
     private int numElem;
@@ -64,7 +66,7 @@ public class LinkedList<A> implements IList<A> {
     }
 
     @Override
-    public Object get(int index) throws ElementNotFound{
+    public A get(int index) throws ElementNotFound{
         Node<A> aux = head;
         int i = 0;
         while (aux != null && i < index){
@@ -79,5 +81,40 @@ public class LinkedList<A> implements IList<A> {
 
     }
 
+    @Override
+    public void print(){
+        Node<A> aux = head;
+        while (aux != null){
+            System.out.print(aux.getInfo() + "->");
+            aux = aux.getNext();
+        }
+    }
+
+    @Override
+    public Iterator<A> iterator(){
+        return new LinkedListIterator();
+    }
+
+    private class LinkedListIterator implements Iterator<A>{
+        private Node<A> current;
+        public LinkedListIterator(){
+            current = head;
+        }
+
+        @Override
+        public boolean hasNext(){
+            if (current != null)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public A next(){
+            A elem = current.getInfo();
+            current = current.getNext();
+            return elem;
+        }
+    }
 
 }

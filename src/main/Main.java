@@ -1,38 +1,23 @@
 package main;
 
-import main.models.ArrayList;
-import main.models.IList;
-import main.models.LinkedList;
+import main.models.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-       IList<Character> array = new ArrayList<>();
-       IList<Character> linkedList = new LinkedList<>();
+      IGraph<Character> graph = new Graph<>();
 
-       for(int i = 65; i < 91; i++){
-            array.add((char)i);
-            linkedList.add((char)i);
-       }
+      graph.addNode('A');
+      graph.addNode('B');
+      graph.addNode('C');
+      graph.addNode('D');
 
-       for (int i = 0; i < 25; i++){
-            System.out.print(array.get(i) + " , ");
-       }
-       System.out.println();
+      graph.addEdge(0, 1);
+      graph.addEdge(0, 2);
+      graph.addEdge(1, 2);
+      graph.addEdge(2, 3);
+      graph.addEdge(2, 0);
 
-       for (int i = 0; i < 25; i++){
-            System.out.print(linkedList.get(i) + " -> ");
-       }
-
-     //   for (int i = 0; i < 25; i++){
-     //        System.out.print(array.contains((char)i) + " , ");
-     //   }
-
-     //    System.out.println();
-
-
-     //   for (int i = 0; i < 25; i++){
-     //        System.out.print(linkedList.contains((char)i) + " -> ");
-     //   }
+      graph.print();
 
     }
 }

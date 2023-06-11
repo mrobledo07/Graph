@@ -1,7 +1,9 @@
 package main.models;
 import main.exceptions.ElementNotFound;
 
-public interface IList<A> {
+import java.util.Iterator;
+
+public interface IList<A> extends Iterable<A> {
     /**
      * This method adds a new element at the end of the list.
      * @param element
@@ -34,4 +36,15 @@ public interface IList<A> {
      * @throws ElementNotFound
      */
     public Object get(int index) throws ElementNotFound;
+
+    /**
+     * Prints the list.
+     */
+    public void print();
+
+    /**
+     * Returns an iterator for the list.
+     * @return iterator
+     */
+    public Iterator<A> iterator();
 }

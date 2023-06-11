@@ -2,20 +2,24 @@ package main.models;
 
 import main.exceptions.ElementNotFound;
 
+import java.util.Iterator;
+
+
+
 public class ArrayList<A> implements IList<A> {
-    private Object[] list;
+    private A[] list;
     private int numElem;
 
+    @SuppressWarnings("unchecked")
     public ArrayList(){
-        this.list = new Object[10];
+        this.list = (A[])new Object[10];
         this.numElem = 0;
     }
     
-    @Override
-    public void add(A element){
-        Object elem = (Object) element;
+    @Override    @SuppressWarnings("unchecked")
+    public void add(A elem){
         if (numElem == list.length){
-            Object[] aux = new Object[list.length + 10];
+            A[] aux = (A[])new Object[list.length + 10];
             for (int i = 0; i < numElem; i++)
                 aux[i] = list[i];
 
@@ -44,8 +48,7 @@ public class ArrayList<A> implements IList<A> {
     }
 
     @Override
-    public boolean contains(A element){
-        Object elem = (Object) element;
+    public boolean contains(A elem){
         for (int i = 0; i < numElem; i++)
             if (list[i].equals(elem))
                 return true;
@@ -58,13 +61,47 @@ public class ArrayList<A> implements IList<A> {
         return numElem;
     }
 
-    public Object get(int index) throws ElementNotFound{
-        Object ret = null;
+    public A get(int index) throws ElementNotFound{
+        A ret = null;
         try{
            ret = list[index];
         }catch (ArrayIndexOutOfBoundsException e){
             throw new ElementNotFound("The index was to high");
         }
         return ret;
+    }
+
+    @Override
+    public void print(){
+        for (int i = 0; i < numElem; i++)
+            System.out.println(list[i]);
+    }
+
+    @Override
+    public Iterator<A> iterator(){
+        return new ArrayListIterator();
+    }
+
+    private class ArrayListIterator implements Iterator<A>{
+        int position;
+        
+        public ArrayListIterator(){
+            position = 0;
+        }
+
+        @Override
+        public boolean hasNext(){
+            if (list[position] != null)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public A next(){
+            A ret = list[position];
+            position++;
+            return ret;
+        }
     }
 }
