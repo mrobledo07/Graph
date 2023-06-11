@@ -1,5 +1,5 @@
 ## Graph
 Unlabeled directed graph implemented using adjacency list.
 
-#Developer
+# Developer
 - Miguel Robledo Kusz (mrobledo07)
