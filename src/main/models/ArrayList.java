@@ -79,19 +79,23 @@ public class ArrayList<A> implements IList<A> {
 
     @Override
     public Iterator<A> iterator(){
-        return new ArrayListIterator();
+        return new ArrayListIterator(list, numElem);
     }
 
     private class ArrayListIterator implements Iterator<A>{
-        int position;
+        private int position;
+        private A[] list;
+        private int numElem;
         
-        public ArrayListIterator(){
+        public ArrayListIterator(A[] list, int numElem){
             position = 0;
+            this.list = list;
+            this.numElem = numElem;
         }
 
         @Override
         public boolean hasNext(){
-            if (list[position] != null)
+            if (position < numElem)
                 return true;
             else
                 return false;
