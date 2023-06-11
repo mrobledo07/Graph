@@ -30,7 +30,6 @@ public class ArrayList<A> implements IList<A> {
         Object elem = (Object) element;
         for (int i = 0; i < numElem; i++)
             if (list[i].equals(elem)){
-                list[i] = null;
                 if (i != numElem - 1)
                     rotate(i);
                 return;
@@ -41,7 +40,7 @@ public class ArrayList<A> implements IList<A> {
 
     private void rotate(int index){
         for (int i = index; i < numElem - 1; i++)
-            list[i+1] = list[i];
+            list[i] = list[i+1];
     }
 
     @Override

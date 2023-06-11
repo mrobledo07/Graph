@@ -28,7 +28,7 @@ public class LinkedList<A> implements IList<A> {
     @Override
     public void remove(A element) throws ElementNotFound{
 
-        if (head.equals(element)){
+        if (head.getInfo().equals(element)){
             head = head.getNext();
             numElem--;
         }else{

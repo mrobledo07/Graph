@@ -27,6 +27,11 @@ public interface IList<A> {
      */
     public int size();
 
-
+    /**
+     * Gets the element located in a certain position
+     * @param index, position
+     * @return element
+     * @throws ElementNotFound
+     */
     public Object get(int index) throws ElementNotFound;
 }
